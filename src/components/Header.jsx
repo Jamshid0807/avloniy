@@ -20,7 +20,7 @@ const Header = () => {
             <span>
               <CiUser />
             </span>
-            Kirish
+            Kirish welcome
           </button>
         </div>
       </div>
