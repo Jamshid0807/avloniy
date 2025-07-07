@@ -1,29 +1,35 @@
-// src/i18n.js
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-
-import uz from "./locate/uz.json";
+import XHR from "i18next-xhr-backend";
+import { initReactI18next } from "react-i18next";
 import ru from "./locate/ru.json";
-
+import uz from "./locate/uz.json";
 const resources = {
-  uz: { translation: uz },
-  ru: { translation: ru },
+  ru: ru,
+  uz: uz,
 };
 
 i18n
+  .use(XHR)
   .use(LanguageDetector)
-  .use(initReactI18next) // MUHIM: React bilan bog‘laydi
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "uz",
-    lng: localStorage.getItem("i18nextLng") || "uz",
+    lng: window.localStorage.getItem("i18nextLng") || "uz",
+    fallbackLng: "ru",
+    debug: true,
+    ns: ["translations"],
+    defaultNS: "translations",
+    keySeparator: ".",
     interpolation: {
       escapeValue: false,
+      formatSeparator: ",",
     },
-    detection: {
-      order: ["localStorage", "navigator"],
-      caches: ["localStorage"],
+    react: {
+      // wait: true,
+      bindI18n: "languageChanged loaded",
+      bindStore: "added removed",
+      nsMode: "default",
     },
   });
 

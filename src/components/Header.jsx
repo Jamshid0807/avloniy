@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/header_footer/v_logo.svg";
 import { CiUser } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 const Header = () => {
+  const { i18n } = useTranslation();
+  const handleChange = (e) => {
+    const selectedLang = e.target.value;
+    i18n.changeLanguage(selectedLang);
+    localStorage.setItem("i18nextLng", selectedLang);
+  };
   return (
     <header>
       <div className="flex justify-between items-center">
@@ -11,8 +19,8 @@ const Header = () => {
           <img src={logo} alt="" />
         </a>
         <div className="flex gap-5">
-          <select name="" id="">
-            <option value="eng">English</option>
+          <select onChange={handleChange} value={i18n.language}>
+            <option value="ru">Rus</option>
             <option value="uz">Uzbek</option>
           </select>
 
@@ -20,7 +28,7 @@ const Header = () => {
             <span>
               <CiUser />
             </span>
-            Kirish welcome
+            Kirish
           </button>
         </div>
       </div>
