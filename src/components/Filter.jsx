@@ -92,8 +92,8 @@ const Filter = () => {
           </div>
 
           <div className="flex flex-col justify-end">
-            <button className="bg-[#28caac] text-white px-6 py-[9px] text-base rounded-lg hover:bg-blue-600 transition">
-              <span className="block">Qidiruvni</span> boshlash
+            <button className="bg-[#28caac] whitespace-nowrap    text-white px-6 py-[9px] text-base rounded-lg hover:bg-blue-600 transition">
+              Qidiruvni boshlash
             </button>
           </div>
         </div>
