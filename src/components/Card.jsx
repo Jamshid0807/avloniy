@@ -1,7 +1,6 @@
 import axios from "axios";
-import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Pagination } from "antd";
 import Filter from "./Filter";
 const Card = () => {
@@ -11,14 +10,25 @@ const Card = () => {
   const [cardData, setCardData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paginationTotal, setpaginationTotal] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams("");
+
+  const paramsObject = {};
+  for (const [key, value] of searchParams.entries()) {
+    paramsObject[key] = value;
+  }
+  const keys = Object.keys(paramsObject);
+  const values2 = Object.values(paramsObject);
+
   useEffect(() => {
     getCategory();
-  }, [page]);
+  }, [page, searchParams]);
   const getCategory = () => {
     setLoading(true);
     axios
       .get(
-        `https://api.onlinedu.uz/api/v1/courses-home?per_page=6&type=demo&page=${page}`
+        `https://api.onlinedu.uz/api/v1/courses-home?per_page=6&type=demo&page=${
+          searchParams == "" ? page : page - 1
+        }&${keys + "=" + values2}&`
       )
       .then((r) => {
         setCardData(r?.data?.data);

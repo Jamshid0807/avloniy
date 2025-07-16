@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
-
+import { useSearchParams } from "react-router-dom";
 const Filter = () => {
   const { t } = useTranslation();
   const language_items = [
@@ -20,7 +20,11 @@ const Filter = () => {
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const paramsObject = Object.fromEntries(searchParams.entries());
+  const heandClick = (prev) => {
+    setSearchParams({ category_id: prev.target.value});
+  };
   useEffect(() => {
     getCategory();
   }, [i18n.language]);
@@ -55,6 +59,7 @@ const Filter = () => {
             <select
               id="kategoriya"
               className="w-full rounded-xl py-[0.5941rem] px-2"
+              onChange={heandClick}
             >
               {data.map((item, index) => (
                 <option value={item.id} key={index}>
@@ -92,8 +97,8 @@ const Filter = () => {
           </div>
 
           <div className="flex flex-col justify-end">
-            <button className="bg-[#28caac] text-white px-6 py-[9px] text-base rounded-lg hover:bg-blue-600 transition">
-              <span className="block">Qidiruvni</span> boshlash
+            <button className="bg-[#28caac] whitespace-nowrap text-white px-6 py-[9px] text-base rounded-lg hover:bg-blue-600 transition">
+              Qidiruvni boshlash
             </button>
           </div>
         </div>
