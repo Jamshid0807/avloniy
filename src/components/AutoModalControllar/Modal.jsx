@@ -89,8 +89,6 @@ const Modal = ({ onClose }) => {
       .finally(() => {});
   };
 
-  // console.log(captchaObj);
-
   useEffect(() => {
     getCaptcha();
   }, []);
