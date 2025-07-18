@@ -23,7 +23,7 @@ const LoginContent = ({
   errLogin,
 }) => {
   return (
-    <div>
+    <div className="mx-6 py-12">
       <button
         onClick={onClose}
         className="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl"
