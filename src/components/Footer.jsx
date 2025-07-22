@@ -2,7 +2,7 @@ import React from "react";
 import nazirov from "../assets/header_footer/nazirov.png";
 const Footer = () => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="container mx-auto flex justify-between items-center">
       <div>
         © 2020-2025 Copyright.
         <span className="text-[#28caac]">Barcha huquqlar himoyalangan.</span>

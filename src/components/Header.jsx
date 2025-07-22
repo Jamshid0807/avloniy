@@ -16,7 +16,7 @@ const Header = () => {
   };
   const token = window.localStorage.getItem("token");
   return (
-    <header>
+    <header className="container mx-auto">
       <div className="flex justify-between items-center">
         <a href="/" className="w-20 h-[23px]">
           <img src={logo} alt="" />
@@ -34,7 +34,7 @@ const Header = () => {
               <span>
                 <CiUser />
               </span>
-              Profil
+              <Link to="/dashboard">Akkount</Link>
             </button>
           ) : (
             <button
